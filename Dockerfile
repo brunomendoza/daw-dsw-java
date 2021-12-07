@@ -1,0 +1,1 @@
+FROM tomcat:10.0-jdk8-corretto

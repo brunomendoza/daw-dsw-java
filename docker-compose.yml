@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  servlet:
+    build:
+      context: .
+  db:
+    image: mysql:8
+    volumes:
+      - dbdata:/var/lib/mysql
+volumes:
+  - dbdata:
