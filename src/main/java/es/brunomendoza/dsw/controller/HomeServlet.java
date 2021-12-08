@@ -14,8 +14,14 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doGet(req, resp);
+        resp.getWriter().append("Served at: ").append(req.getContextPath());
+        req.getRequestDispatcher("home.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        super.doPost(req, resp);
         CustomerDao customerDao = new CustomerDao();
         System.out.println(customerDao.getById(1L));
-        resp.getWriter().append("Served at: ").append(req.getContextPath());
     }
 }
