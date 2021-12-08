@@ -13,11 +13,28 @@ public class CustomerDao implements Dao<Customer>{
         String query = "SELECT * FROM customer WHERE id = ? LIMIT 1";
 
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://db:3306/ecommerce", "dsw", "dsw");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://db:3306/dsw", "dsw", "dsw");
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setLong(1, id);
             resultSet = statement.executeQuery();
-        } catch (SQLException e) {
+
+            resultSet.next();
+
+            customer = new Customer(
+                    resultSet.getLong("id"),
+                    resultSet.getString("username"),
+                    resultSet.getString("password"),
+                    resultSet.getString("first_name"),
+                    resultSet.getString("last_name"),
+                    resultSet.getDate("birthdate"),
+                    resultSet.getInt("country_id"),
+                    resultSet.getString("address"),
+                    resultSet.getString("phone_number1"),
+                    resultSet.getString("phone_number2"),
+                    resultSet.getDate(("created_at"))
+            );
+        } catch (SQLException | ClassNotFoundException e) {
             System.err.println(e.getMessage());
         }
 

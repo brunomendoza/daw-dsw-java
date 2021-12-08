@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  servlet:
+  app:
     build:
       context: .
     ports:
@@ -8,7 +8,8 @@ services:
     depends_on:
       - db
   db:
-    image: mysql:8
+    build:
+      context: db
     environment:
       - MYSQL_ROOT_PASSWORD=dsw
       - MYSQL_DATABASE=dsw
@@ -16,5 +17,13 @@ services:
       - MYSQL_PASSWORD=dsw
     volumes:
       - dbdata:/var/lib/mysql
+
+  adminer:
+    image: adminer:latest
+    ports:
+      - "9000:8080"
+    depends_on:
+      - db
+
 volumes:
   dbdata:

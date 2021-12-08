@@ -108,4 +108,21 @@ public class Customer {
     public void setPhoneNumber2(String phoneNumber2) {
         this.phoneNumber2 = phoneNumber2;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthdate=" + birthdate +
+                ", countryId=" + countryId +
+                ", address='" + address + '\'' +
+                ", phoneNumber1='" + phoneNumber1 + '\'' +
+                ", phoneNumber2='" + phoneNumber2 + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }

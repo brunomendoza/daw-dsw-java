@@ -1,4 +1,5 @@
 package es.brunomendoza.dsw.controller;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,9 +9,10 @@ import java.io.IOException;
 import java.util.Date;
 
 @WebServlet("/customer")
-public class CustomerController extends HttpServlet {
+public class CustomerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("customer.html");
+        requestDispatcher.forward(req, resp);
     }
 }
