@@ -3,9 +3,18 @@ services:
   servlet:
     build:
       context: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
   db:
     image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=dsw
+      - MYSQL_DATABASE=dsw
+      - MYSQL_USER=dsw
+      - MYSQL_PASSWORD=dsw
     volumes:
       - dbdata:/var/lib/mysql
 volumes:
-  - dbdata:
+  dbdata:
