@@ -22,6 +22,6 @@ public class HomeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doPost(req, resp);
         CustomerDao customerDao = new CustomerDao();
-        System.out.println(customerDao.getById(1L));
+        System.out.println(customerDao.getById(0L));
     }
 }

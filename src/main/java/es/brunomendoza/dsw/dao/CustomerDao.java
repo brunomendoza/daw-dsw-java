@@ -11,9 +11,9 @@ public class CustomerDao implements Dao<Customer>{
         Customer customer = null;
         ResultSet resultSet;
         String query = "SELECT * FROM customer WHERE id = ? LIMIT 1";
-
+        
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+        	Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://db:3306/dsw", "dsw", "dsw");
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setLong(1, id);
@@ -34,6 +34,8 @@ public class CustomerDao implements Dao<Customer>{
                     resultSet.getString("phone_number2"),
                     resultSet.getDate(("created_at"))
             );
+            
+            conn.close();
         } catch (SQLException | ClassNotFoundException e) {
             System.err.println(e.getMessage());
         }
