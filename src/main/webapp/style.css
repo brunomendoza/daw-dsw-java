@@ -1,11 +1,12 @@
 .wrapper {
+  max-width: 960px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
 }
 
-.form-group {
+.control-group {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;

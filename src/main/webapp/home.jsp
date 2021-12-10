@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="wrapper">
-        <form action="/login" class="form">
+        <form action="/daw-dsw-java/home" class="form" method="post">
             <fieldset>
                 <div class="control-group">
                     <label for="username">Username</label>
