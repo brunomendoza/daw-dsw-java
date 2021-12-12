@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="wrapper">
-    <form action="/login" class="form"></form>
+    <h2>Customer</h2>
   </div>
 </body>
 </html>

@@ -1,3 +1,8 @@
+<%@ page import="java.util.List, java.util.ArrayList" %>
+<%!
+List<String> errors = new ArrayList<>();
+out.println(request.getAttribute("es.brunomendoza.dsw.errors"));
+%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,11 +15,12 @@
 </head>
 <body>
     <div class="wrapper">
-        <form action="/daw-dsw-java/home" class="form" method="post">
+        <form action="/" class="form" method="post">
             <fieldset>
                 <div class="control-group">
                     <label for="username">Username</label>
                     <input type="text" name="username" id="username">
+                    <span class=".error <%= errors.contains("username") ? out.print("") : out.print("hidden"); %>">Nombre de usuario requerido</span>
                 </div>
                 <div class="control-group">
                     <label for="password">Password</label>
