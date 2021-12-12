@@ -3,8 +3,12 @@ services:
   app:
     build:
       context: .
+    environment:
+      - JPDA_ADDRESS=*:8001
+      - JPDA_TRANSPORT=dt_socket
     ports:
       - "8080:8080"
+      - "8001:8001"
     depends_on:
       - db
   db:
