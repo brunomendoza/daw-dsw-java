@@ -21,16 +21,17 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doGet(req, resp);
-        List<Cookie> cookies = Arrays.asList(req.getCookies());
-        Cookie cookie = cookies
-                .stream()
-                .filter(c -> c.getName().equals("dsw"))
-                .findFirst()
-                .orElse(null);
+        Cookie cookie;
 
-        if (cookie == null) {
+        if (req.getCookies() == null) {
             req.getRequestDispatcher("home.jsp").forward(req, resp);
         } else {
+            List<Cookie> cookies = Arrays.asList(req.getCookies());
+            cookie = cookies
+                    .stream()
+                    .filter(c -> c.getName().equals("dsw"))
+                    .findFirst()
+                    .orElse(null);
             resp.getWriter().append("Yeah");
         }
     }
@@ -44,17 +45,19 @@ public class HomeServlet extends HttpServlet {
         List<String> errors = LoginFormValidator.validate(req.getParameterMap());
 
         if (errors.size() > 0) {
-            req.setAttribute("es.brunomendoza.dsw.errors", errors);
+            req.setAttribute("es.brunomendoza.dsw.att.errors", errors);
             req.getRequestDispatcher("home.jsp").forward(req, resp);
         } else {
             customer = customerDao.authenticate(req.getParameter("username"), req.getParameter("password"));
 
             if (customer == null) {
-                req.setAttribute("es.brunomendoza.dsw.errors", "fuck");
+                errors.add("authentication");
+                req.setAttribute("es.brunomendoza.dsw.att.errors", errors);
                 req.getRequestDispatcher("home.jsp").forward(req, resp);
             } else {
                 cookie = new Cookie("dsw", "wsd");
                 resp.addCookie(cookie);
+                req.setAttribute("customer", customer);
                 req.getRequestDispatcher("customer").forward(req, resp);
             }
         }

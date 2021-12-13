@@ -1,8 +1,8 @@
-<%@ page import="java.util.List, java.util.ArrayList" %>
+<%@ page language="java" import="java.util.List, java.util.ArrayList" %>
 <%!
-List<String> errors = new ArrayList<>();
-out.println(request.getAttribute("es.brunomendoza.dsw.errors"));
+List<String> errors;
 %>
+<% List<String> errors = (List<String>)request.getAttribute("es.brunomendoza.dsw.att.errors"); %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,16 +19,18 @@ out.println(request.getAttribute("es.brunomendoza.dsw.errors"));
             <fieldset>
                 <div class="control-group">
                     <label for="username">Username</label>
-                    <input type="text" name="username" id="username">
-                    <span class=".error <%= errors.contains("username") ? out.print("") : out.print("hidden"); %>">Nombre de usuario requerido</span>
+                    <input type="text" name="username" id="username" value="<%= request.getParameter("username") == null ? "" : request.getParameter("username") %>">
+                    <span class="error <%= errors != null && errors.contains("username") ? "" : "hidden" %>">Nombre de usuario requerido</span>
                 </div>
                 <div class="control-group">
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password">
+                    <input type="password" name="password" id="password" value="<%= request.getParameter("password") == null ? "" : request.getParameter("password") %>">
+                    <span class="error <%= errors != null && errors.contains("password") ? "" : "hidden" %>">Password requerido</span>
                 </div>
                 <button class="primary-button">Enviar</button>
             </fieldset>
         </form>
+        <span class="error <%= errors != null && errors.contains("authentication") ? "" : "hidden" %>">Usuario o contraseña no válido</span>
     </div>
 </body>
 </html>

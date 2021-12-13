@@ -7,6 +7,8 @@
 }
 
 .control-group {
+  padding: .25rem;
+  margin-bottom: .25rem;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -14,6 +16,7 @@
 }
 
 .error {
+  padding: .25rem;
   color: red;
 }
 
