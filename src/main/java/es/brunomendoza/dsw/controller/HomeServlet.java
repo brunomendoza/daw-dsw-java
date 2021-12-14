@@ -34,10 +34,9 @@ public class HomeServlet extends HttpServlet {
                     .findFirst()
                     .orElse(null);
 
-            if (cookie != null) {
-                target = "customer.jsp";
-            } else {
-                cookie.setMaxAge(3600);
+            if (cookie != null && cookie.getMaxAge() != 0) {
+                target = "/customer";
+                cookie.setMaxAge(3600 * 24 * 7);
             }
         }
 
@@ -60,6 +59,7 @@ public class HomeServlet extends HttpServlet {
         } else {
             try {
                 customer = customerDao.authenticate(req.getParameter("username"), req.getParameter("password"));
+
                 if (customer == null) {
                     errors.add("authentication");
                     req.setAttribute("es.brunomendoza.dsw.att.errors", errors);
@@ -75,11 +75,12 @@ public class HomeServlet extends HttpServlet {
                             countryDao.getById(customer.getCountryId()).getName()
                     );
                     cookie = new Cookie("dsw", String.valueOf(customer.getId()));
+                    cookie.setMaxAge(3600 * 7 * 24);
                     resp.addCookie(cookie);
                     req.setAttribute("es.brunomendoza.dsw.att.customer", customerDto);
                     target = "customer.jsp";
                 }
-            } catch (Exception e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 errors.add("system");
                 req.setAttribute("es.brunomendoza.dsw.att.errors", errors);
             }

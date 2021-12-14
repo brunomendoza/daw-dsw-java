@@ -1,5 +1,8 @@
+<%@ page language="java" import="es.brunomendoza.dsw.dto.CustomerDto" %>
+<% CustomerDto customer = (CustomerDto)request.getAttribute("es.brunomendoza.dsw.att.customer"); %>
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
@@ -10,6 +13,41 @@
 <body>
   <div class="wrapper">
     <h2>Customer</h2>
+    <table>
+      <tr>
+        <th>Nombre</th>
+        <td><%= customer.getFirstName() %></td>
+      <tr>
+      <tr>
+        <th>Apellidos</th>
+        <td><%= customer.getLastName() %></td>
+      <tr>
+      <tr>
+        <th>Fecha Nacimiento</th>
+        <td><%= customer.getBirthdate() %></td>
+      <tr>
+      <tr>
+        <th>Dirección</th>
+        <td><%= customer.getAddress() %></td>
+      <tr>
+      <tr>
+        <th>Teléfono 1</th>
+        <td><%= customer.getPhoneNumber1() %></td>
+      <tr>
+      <tr>
+        <th>Teléfono 2</th>
+        <td><%= customer.getPhoneNumber2() == null ? "Ninguno" : customer.getPhoneNumber2() %></td>
+      <tr>
+      <tr>
+        <th>País</th>
+        <td><%= customer.getCountry() %></td>
+      <tr>
+      <tr>
+        <th>Nombre</th>
+        <td><%= customer.getFirstName() %></td>
+      <tr>
+    </table>
+
   </div>
 </body>
 </html>

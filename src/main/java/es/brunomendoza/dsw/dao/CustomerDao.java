@@ -20,21 +20,22 @@ public class CustomerDao implements Dao<Customer>{
             preparedStatement.setString(2, password);
             resultSet = preparedStatement.executeQuery();
 
-            resultSet.next();
-            customer = new Customer(
-                    resultSet.getLong("id"),
-                    resultSet.getString("username"),
-                    resultSet.getString("password"),
-                    resultSet.getString("first_name"),
-                    resultSet.getString("last_name"),
-                    resultSet.getDate("birthdate"),
-                    resultSet.getLong("country_id"),
-                    resultSet.getString("address"),
-                    resultSet.getString("phone_number1"),
-                    resultSet.getString("phone_number2"),
-                    resultSet.getString("email"),
-                    resultSet.getDate("created_at")
-            );
+            if (resultSet.next()) {
+                customer = new Customer(
+                        resultSet.getLong("id"),
+                        resultSet.getString("username"),
+                        resultSet.getString("password"),
+                        resultSet.getString("first_name"),
+                        resultSet.getString("last_name"),
+                        resultSet.getDate("birthdate"),
+                        resultSet.getLong("country_id"),
+                        resultSet.getString("address"),
+                        resultSet.getString("phone_number1"),
+                        resultSet.getString("phone_number2"),
+                        resultSet.getString("email"),
+                        resultSet.getDate("created_at")
+                );
+            }
         } finally {
             if (connection != null) {
                 connection.close();
@@ -58,22 +59,22 @@ public class CustomerDao implements Dao<Customer>{
             statement.setLong(1, id);
             resultSet = statement.executeQuery();
 
-            resultSet.next();
-
-            customer = new Customer(
-                    resultSet.getLong("id"),
-                    resultSet.getString("username"),
-                    resultSet.getString("password"),
-                    resultSet.getString("first_name"),
-                    resultSet.getString("last_name"),
-                    resultSet.getDate("birthdate"),
-                    resultSet.getLong("country_id"),
-                    resultSet.getString("address"),
-                    resultSet.getString("phone_number1"),
-                    resultSet.getString("phone_number2"),
-                    resultSet.getString("email"),
-                    resultSet.getDate(("created_at"))
-            );
+            if (resultSet.next()) {
+                customer = new Customer(
+                        resultSet.getLong("id"),
+                        resultSet.getString("username"),
+                        resultSet.getString("password"),
+                        resultSet.getString("first_name"),
+                        resultSet.getString("last_name"),
+                        resultSet.getDate("birthdate"),
+                        resultSet.getLong("country_id"),
+                        resultSet.getString("address"),
+                        resultSet.getString("phone_number1"),
+                        resultSet.getString("phone_number2"),
+                        resultSet.getString("email"),
+                        resultSet.getDate(("created_at"))
+                );
+            }
         } finally {
             if (connection != null) {
                 connection.close();

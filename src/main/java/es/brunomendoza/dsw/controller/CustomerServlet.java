@@ -32,6 +32,7 @@ public class CustomerServlet extends HttpServlet {
         Cookie[] cookies = req.getCookies();
         Cookie cookie;
         Object obj;
+        List<String> errors;
         String target = "/";
 
         if (cookies != null) {
@@ -60,14 +61,19 @@ public class CustomerServlet extends HttpServlet {
                             );
                             req.setAttribute("es.brunomendoza.dsw.att.customer", customerDto);
                             target = "customer.jsp";
+                        } else {
+                            // Cookie dsw doesn't contain a valid customer identifier
+                            cookie.setMaxAge(0);
+                            resp.addCookie(cookie);
+                            errors = new ArrayList<>();
+                            errors.add("not_found");
+                            req.setAttribute("es.brunomendoza.dsw.att.errors", errors);
                         }
                     } catch (Exception e) {
-                        List<String> errors = new ArrayList<>();
+                        errors = new ArrayList<>();
                         errors.add("system");
                         req.setAttribute("es.brunomendoza.dsw.att.errors", errors);
                     }
-                } else {
-                    target = "customer.jsp";
                 }
             }
         }

@@ -4,7 +4,7 @@ List<String> errors;
 %>
 <% List<String> errors = (List<String>)request.getAttribute("es.brunomendoza.dsw.att.errors"); %>
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -32,6 +32,7 @@ List<String> errors;
         </form>
         <span class="error <%= errors != null && errors.contains("authentication") ? "" : "hidden" %>">Usuario o contraseña no válido</span>
         <span class="error <%= errors != null && errors.contains("system") ? "" : "hidden" %>">Error de sistema</span>
+        <span class="error <%= errors != null && errors.contains("not_found") ? "" : "hidden" %>">Usuario no encontrado</span>
     </div>
 </body>
 </html>
