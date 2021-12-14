@@ -1,10 +1,8 @@
 package es.brunomendoza.dsw.dao;
 
 import es.brunomendoza.dsw.model.Country;
-import es.brunomendoza.dsw.model.Customer;
 
 import java.sql.*;
-import java.util.List;
 
 public class CountryDao implements Dao<Country>{
     @Override
@@ -21,12 +19,13 @@ public class CountryDao implements Dao<Country>{
             statement.setLong(1, id);
             resultSet = statement.executeQuery();
 
-            resultSet.next();
+            if (resultSet.next()) {
+                country = new Country(
+                        resultSet.getLong("id"),
+                        resultSet.getString("name")
+                );
+            }
 
-            country = new Country(
-                    resultSet.getLong("id"),
-                    resultSet.getString("name")
-            );
         } finally {
             if (connection != null) {
                 connection.close();
