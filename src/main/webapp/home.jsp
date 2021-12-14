@@ -31,6 +31,7 @@ List<String> errors;
             </fieldset>
         </form>
         <span class="error <%= errors != null && errors.contains("authentication") ? "" : "hidden" %>">Usuario o contraseña no válido</span>
+        <span class="error <%= errors != null && errors.contains("system") ? "" : "hidden" %>">Error de sistema</span>
     </div>
 </body>
 </html>

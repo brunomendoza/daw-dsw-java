@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.List;
 
 public class CustomerDao implements Dao<Customer>{
-    public Customer authenticate (String username, String password) {
+    public Customer authenticate (String username, String password) throws SQLException, ClassNotFoundException {
         Customer customer = null;
         ResultSet resultSet;
         Connection connection = null;
@@ -28,22 +28,16 @@ public class CustomerDao implements Dao<Customer>{
                     resultSet.getString("first_name"),
                     resultSet.getString("last_name"),
                     resultSet.getDate("birthdate"),
-                    resultSet.getInt("country_id"),
+                    resultSet.getLong("country_id"),
                     resultSet.getString("address"),
                     resultSet.getString("phone_number1"),
                     resultSet.getString("phone_number2"),
-                    resultSet.getDate(("created_at"))
+                    resultSet.getString("email"),
+                    resultSet.getDate("created_at")
             );
-
-        } catch (SQLException | ClassNotFoundException e) {
-            System.err.printf("Exception catched: %s", e.getMessage());
         } finally {
             if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                connection.close();
             }
         }
 
@@ -51,15 +45,16 @@ public class CustomerDao implements Dao<Customer>{
     }
 
     @Override
-    public Customer getById(Long id) {
+    public Customer getById(Long id) throws SQLException, ClassNotFoundException {
+        Connection connection = null;
         Customer customer = null;
         ResultSet resultSet;
         String query = "SELECT * FROM customer WHERE id = ? LIMIT 1";
-        
+
         try {
-        	Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://db:3306/dsw", "dsw", "dsw");
-            PreparedStatement statement = conn.prepareStatement(query);
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://db:3306/dsw", "dsw", "dsw");
+            PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             resultSet = statement.executeQuery();
 
@@ -72,38 +67,19 @@ public class CustomerDao implements Dao<Customer>{
                     resultSet.getString("first_name"),
                     resultSet.getString("last_name"),
                     resultSet.getDate("birthdate"),
-                    resultSet.getInt("country_id"),
+                    resultSet.getLong("country_id"),
                     resultSet.getString("address"),
                     resultSet.getString("phone_number1"),
                     resultSet.getString("phone_number2"),
+                    resultSet.getString("email"),
                     resultSet.getDate(("created_at"))
             );
-            
-            conn.close();
-        } catch (SQLException | ClassNotFoundException e) {
-            System.err.println(e.getMessage());
+        } finally {
+            if (connection != null) {
+                connection.close();
+            }
         }
 
         return customer;
-    }
-
-    @Override
-    public List<Customer> getAll() {
-        return null;
-    }
-
-    @Override
-    public Boolean save(Customer customer) {
-        return null;
-    }
-
-    @Override
-    public Boolean remove(Customer customer) {
-        return null;
-    }
-
-    @Override
-    public Boolean update(Customer customer) {
-        return null;
     }
 }

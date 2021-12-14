@@ -9,13 +9,14 @@ public class Customer {
     private String firstName;
     private String lastName;
     private Date birthdate;
-    private Integer countryId;
+    private Long countryId;
     private String address;
     private String phoneNumber1;
     private String phoneNumber2;
+    private String email;
     private Date createdAt;
 
-    public Customer(Long id, String username, String password, String firstName, String lastName, Date birthdate, Integer countryId, String address, String phoneNumber1, String phoneNumber2, Date createdAt) {
+    public Customer(Long id, String username, String password, String firstName, String lastName, Date birthdate, Long countryId, String address, String phoneNumber1, String phoneNumber2, String email, Date createdAt) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -26,6 +27,7 @@ public class Customer {
         this.address = address;
         this.phoneNumber1 = phoneNumber1;
         this.phoneNumber2 = phoneNumber2;
+        this.email = email;
         this.createdAt = createdAt;
     }
 
@@ -77,11 +79,11 @@ public class Customer {
         this.birthdate = birthdate;
     }
 
-    public Integer getCountryId() {
+    public Long getCountryId() {
         return countryId;
     }
 
-    public void setCountryId(Integer countryId) {
+    public void setCountryId(Long countryId) {
         this.countryId = countryId;
     }
 
@@ -109,6 +111,10 @@ public class Customer {
         this.phoneNumber2 = phoneNumber2;
     }
 
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -122,6 +128,7 @@ public class Customer {
                 ", address='" + address + '\'' +
                 ", phoneNumber1='" + phoneNumber1 + '\'' +
                 ", phoneNumber2='" + phoneNumber2 + '\'' +
+                ", email='" + email + '\'' +
                 ", createdAt=" + createdAt +
                 '}';
     }
