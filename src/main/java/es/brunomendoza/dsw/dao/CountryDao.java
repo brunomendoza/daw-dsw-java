@@ -25,7 +25,6 @@ public class CountryDao implements Dao<Country>{
                         resultSet.getString("name")
                 );
             }
-
         } finally {
             if (connection != null) {
                 connection.close();

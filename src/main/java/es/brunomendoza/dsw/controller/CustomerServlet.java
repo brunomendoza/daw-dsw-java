@@ -59,6 +59,7 @@ public class CustomerServlet extends HttpServlet {
                                     customer.getEmail(),
                                     countryDao.getById(customer.getCountryId()).getName()
                             );
+
                             req.setAttribute("es.brunomendoza.dsw.att.customer", customerDto);
                             target = "customer.jsp";
                         } else {

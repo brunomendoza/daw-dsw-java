@@ -77,6 +77,7 @@ public class HomeServlet extends HttpServlet {
                     cookie = new Cookie("dsw", String.valueOf(customer.getId()));
                     cookie.setMaxAge(3600 * 7 * 24);
                     resp.addCookie(cookie);
+                    // https://jakarta.ee/specifications/platform/9/apidocs/
                     req.setAttribute("es.brunomendoza.dsw.att.customer", customerDto);
                     target = "customer.jsp";
                 }
