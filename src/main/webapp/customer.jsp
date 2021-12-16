@@ -1,4 +1,5 @@
 <%@ page language="java" import="es.brunomendoza.dsw.dto.CustomerDto" %>
+<%@ page pageEncoding="UTF-8" %>
 <% CustomerDto customer = (CustomerDto)request.getAttribute("es.brunomendoza.dsw.att.customer"); %>
 
 <!doctype html>

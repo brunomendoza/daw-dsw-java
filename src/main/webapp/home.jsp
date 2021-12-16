@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.List, java.util.ArrayList" %>
+<%@ page pageEncoding="UTF-8" %>
 <%!
 List<String> errors;
 %>
