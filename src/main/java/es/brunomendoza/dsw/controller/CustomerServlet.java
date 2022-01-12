@@ -3,7 +3,6 @@ package es.brunomendoza.dsw.controller;
 import es.brunomendoza.dsw.dao.CountryDao;
 import es.brunomendoza.dsw.dao.CustomerDao;
 import es.brunomendoza.dsw.dto.CustomerDto;
-import es.brunomendoza.dsw.model.Country;
 import es.brunomendoza.dsw.model.Customer;
 
 import javax.servlet.ServletException;
@@ -17,14 +16,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@WebServlet(value = {"/customer"}, name = "customer")
+@WebServlet(value = {"/customer", "/customer/edit"}, name = "customer")
 public class CustomerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processRequest(req, resp);
-    }
-
-    private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws  ServletException, IOException {
         Customer customer;
         CustomerDao customerDao = new CustomerDao();
         CountryDao countryDao = new CountryDao();
@@ -79,6 +74,22 @@ public class CustomerServlet extends HttpServlet {
             }
         }
 
-        req.getRequestDispatcher(target).forward(req, resp);
+        if (req.getServletPath().equals("/customer/edit")) {
+            req.getRequestDispatcher("./customer-edit.jsp").forward(req, resp);
+        } else {
+            req.getRequestDispatcher(target).forward(req, resp);
+        }
+    }
+
+    private void print() {
+
+    }
+
+    private void save() {
+
+    }
+
+    private void edit() {
+
     }
 }
