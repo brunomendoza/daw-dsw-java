@@ -1,0 +1,20 @@
+.wrapper {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.form .control-group {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-item: center;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+.error {
+  color: red;
+}

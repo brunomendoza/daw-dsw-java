@@ -13,6 +13,6 @@ public class TestServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doGet(req, resp);
 
-        resp.getWriter().printf("Path: %s; URL: %s; PathInfo: %s; ServletPath: %s", req.getPathInfo(), req.getRequestURL(), req.getPathInfo(), req.getServletPath()git st);
+        resp.getWriter().printf("Path: %s; URL: %s; PathInfo: %s; ServletPath: %s", req.getPathInfo(), req.getRequestURL(), req.getPathInfo(), req.getServletPath());
     }
 }
