@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@WebServlet(value = {"/customer", "/customer/edit"}, name = "customer")
+@WebServlet(value = {"/customer/*"}, name = "customer")
 public class CustomerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -74,11 +74,7 @@ public class CustomerServlet extends HttpServlet {
             }
         }
 
-        if (req.getServletPath().equals("/customer/edit")) {
-            req.getRequestDispatcher("./customer-edit.jsp").forward(req, resp);
-        } else {
-            req.getRequestDispatcher(target).forward(req, resp);
-        }
+        req.getRequestDispatcher(target).forward(req, resp);
     }
 
     private void print() {

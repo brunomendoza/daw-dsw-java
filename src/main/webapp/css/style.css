@@ -1,5 +1,5 @@
 .wrapper {
-  width: 960px;
+  width: 360px;
   margin: 0 auto;
 }
 
@@ -8,6 +8,7 @@
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-item: center;
+  margin-bottom: .8rem;
 }
 
 .hidden {

@@ -9,6 +9,10 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/jquery-ui.css" />
+  <link rel="stylesheet" href="./css/jquery-ui.structure.css" />
+  <link rel="stylesheet" href="./css/jquery-ui.theme.css" />
   <title>Document</title>
 </head>
 <body>
@@ -20,12 +24,10 @@
             <div class="control-group">
                 <label for="username">Usuario</label>
                 <input type="text" name="username" id="username" value="<%= request.getParameter("username") == null ? "" : request.getParameter("username") %>">
-                <span class="error <%= errors != null && errors.contains("username") ? "" : "hidden" %>">Nombre de usuario requerido</span>
             </div>
             <div class="control-group">
                 <label for="username">Password</label>
                 <input type="text" name="password" id="password" value="<%= request.getParameter("username") == null ? "" : request.getParameter("username") %>">
-                <span class="error <%= errors != null && errors.contains("username") ? "" : "hidden" %>">Nombre de usuario requerido</span>
             </div>
         </fieldset>
         <fieldset>
@@ -33,49 +35,38 @@
             <div class="control-group">
                 <label for="first-name">Nombre</label>
                 <input type="text" name="firstName" id="first-name" value="<%= request.getParameter("username") == null ? "" : request.getParameter("username") %>">
-                <span class="error <%= errors != null && errors.contains("username") ? "" : "hidden" %>">Nombre de usuario requerido</span>
             </div>
             <div class="control-group">
                 <label for="last-name">Apellidos</label>
                 <input type="text" name="lastName" id="last-name" value="<%= request.getParameter("password") == null ? "" : request.getParameter("password") %>">
-                <span class="error <%= errors != null && errors.contains("password") ? "" : "hidden" %>">Password requerido</span>
             </div>
             <div class="control-group">
                 <label for="birthdate">Fecha Nacimiento</label>
                 <input type="text" name="birthdate" id="birthdate" value="<%= request.getParameter("password") == null ? "" : request.getParameter("password") %>">
-                <span class="error <%= errors != null && errors.contains("password") ? "" : "hidden" %>">Password requerido</span>
             </div>
             <div class="control-group">
                 <label for="address">Dirección</label>
                 <input type="text" name="address" id="address" value="<%= request.getParameter("password") == null ? "" : request.getParameter("password") %>">
-                <span class="error <%= errors != null && errors.contains("password") ? "" : "hidden" %>">Password requerido</span>
             </div>
             <div class="control-group">
                 <label for="phone-number1">Teléfono 1</label>
                 <input type="text" name="phoneNumber1" id="phone-number1" value="<%= request.getParameter("password") == null ? "" : request.getParameter("password") %>">
-                <span class="error <%= errors != null && errors.contains("password") ? "" : "hidden" %>">Password requerido</span>
             </div>
             <div class="control-group">
                 <label for="phone-number2">Teléfono 2</label>
                 <input type="text" name="phoneNumber2" id="phone-number2" value="<%= request.getParameter("password") == null ? "" : request.getParameter("password") %>">
-                <span class="error <%= errors != null && errors.contains("password") ? "" : "hidden" %>">Password requerido</span>
             </div>
             <div class="control-group">
                 <label for="country">Apellidos</label>
                 <input type="text" name="country" id="country" value="<%= request.getParameter("password") == null ? "" : request.getParameter("password") %>">
-                <span class="error <%= errors != null && errors.contains("password") ? "" : "hidden" %>">Password requerido</span>
             </div>
             <div class="control-group">
                 <label for="email">E-mail</label>
                 <input type="text" name="email" id="email" value="<%= request.getParameter("password") == null ? "" : request.getParameter("password") %>">
-                <span class="error <%= errors != null && errors.contains("password") ? "" : "hidden" %>">Password requerido</span>
             </div>
             <button class="primary-button">Enviar</button>
         </fieldset>
     </form>
-    <span class="error <%= errors != null && errors.contains("authentication") ? "" : "hidden" %>">Usuario o contraseña no válido</span>
-    <span class="error <%= errors != null && errors.contains("system") ? "" : "hidden" %>">Error de sistema</span>
-    <span class="error <%= errors != null && errors.contains("not_found") ? "" : "hidden" %>">Usuario no encontrado</span>
   </div>
   <div class="wrapper">
     <h2>Customer</h2>
@@ -115,5 +106,7 @@
     </table>
     <a href="/customer/edit">Edit</a>
   </div>
+  <script src="./js/jquery.js"></script>
+  <script src="./js/jquery-ui.js"></script>
 </body>
 </html>

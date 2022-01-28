@@ -16,7 +16,7 @@ List<String> errors;
 </head>
 <body>
     <div class="wrapper">
-        <form action="/" class="form" method="post">
+        <form action="/login" class="form" method="post">
             <fieldset>
                 <div class="control-group">
                     <label for="username">Username</label>

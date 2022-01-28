@@ -39,54 +39,7 @@ public class HomeServlet extends HttpServlet {
                 cookie.setMaxAge(3600 * 24 * 7);
             }
         }
-
-        req.getRequestDispatcher(target).forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        super.doPost(req, resp);
-        CustomerDao customerDao = new CustomerDao();
-        CountryDao countryDao = new CountryDao();
-        Customer customer;
-        Cookie cookie;
-        List<String> errors = LoginFormValidator.validate(req.getParameterMap());
-        String target = "home.jsp";
-        CustomerDto customerDto;
-
-        if (errors.size() > 0) {
-            req.setAttribute("es.brunomendoza.dsw.att.errors", errors);
-        } else {
-            try {
-                customer = customerDao.authenticate(req.getParameter("username"), req.getParameter("password"));
-
-                if (customer == null) {
-                    errors.add("authentication");
-                    req.setAttribute("es.brunomendoza.dsw.att.errors", errors);
-                } else {
-                    customerDto = new CustomerDto(
-                            customer.getFirstName(),
-                            customer.getLastName(),
-                            customer.getBirthdate(),
-                            customer.getAddress(),
-                            customer.getPhoneNumber1(),
-                            customer.getPhoneNumber2(),
-                            customer.getEmail(),
-                            countryDao.getById(customer.getCountryId()).getName()
-                    );
-                    cookie = new Cookie("dsw", String.valueOf(customer.getId()));
-                    cookie.setMaxAge(3600 * 7 * 24);
-                    resp.addCookie(cookie);
-                    // https://jakarta.ee/specifications/platform/9/apidocs/
-                    req.setAttribute("es.brunomendoza.dsw.att.customer", customerDto);
-                    target = "customer.jsp";
-                }
-            } catch (SQLException | ClassNotFoundException e) {
-                errors.add("system");
-                req.setAttribute("es.brunomendoza.dsw.att.errors", errors);
-            }
-        }
-
+//        resp.getOutputStream().print("Fuck");
         req.getRequestDispatcher(target).forward(req, resp);
     }
 }
